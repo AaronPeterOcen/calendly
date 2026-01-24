@@ -1,13 +1,16 @@
+// Entry point of the Flutter application
 // main.dart
 import 'package:calendly/modals/task_detail_sheet.dart';
 import 'package:calendly/screens/notes_section.dart';
 import 'package:calendly/screens/remainder_calender_section.dart';
 import 'package:flutter/material.dart';
 
+// Runs the Flutter app
 void main() {
   runApp(const MyApp());
 }
 
+// Main application widget configuring MaterialApp
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -30,6 +33,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// Root widget managing the main screen with calendar, tasks, and notes
 class RootWithBottomNav extends StatefulWidget {
   const RootWithBottomNav({super.key});
 
@@ -38,8 +42,10 @@ class RootWithBottomNav extends StatefulWidget {
 }
 
 class _RootWithBottomNavState extends State<RootWithBottomNav> {
+  // Focused date for the calendar
   DateTime _focusedDate = DateTime(2025, 10);
 
+  // Shows the task detail modal bottom sheet
   void _showTaskDetail(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -61,6 +67,7 @@ class _RootWithBottomNavState extends State<RootWithBottomNav> {
   }
 
   @override
+  // Builds the main UI with app bar, calendar section, and notes section
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Productivity Dashboard")),

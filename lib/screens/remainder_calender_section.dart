@@ -1,6 +1,8 @@
+// Calendar and events section widgets
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+// Widget for the calendar with events
 class ReminderCalendarSection extends StatelessWidget {
   final DateTime focusedDate;
   final ValueChanged<DateTime> onDateChanged;
@@ -15,6 +17,7 @@ class ReminderCalendarSection extends StatelessWidget {
     this.onEditTap,
   });
 
+  // Helper to get month name from number
   String _getMonthName(int month) {
     const monthNames = [
       'January',
@@ -34,6 +37,7 @@ class ReminderCalendarSection extends StatelessWidget {
   }
 
   @override
+  // Builds month header, tabs, calendar, event list
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -118,6 +122,7 @@ class ReminderCalendarSection extends StatelessWidget {
   }
 }
 
+// Widget for displaying an event card
 class EventCard extends StatelessWidget {
   final String title, time, person, location;
   final VoidCallback onTap;

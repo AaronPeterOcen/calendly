@@ -1,5 +1,7 @@
+// Task detail modal sheet widget
 import 'package:flutter/material.dart';
 
+// Widget for displaying and editing task details
 class TaskDetailSection extends StatelessWidget {
   final ScrollController scrollController;
 
@@ -10,6 +12,7 @@ class TaskDetailSection extends StatelessWidget {
   });
 
   @override
+  // Builds the form with title, priority, assignees, description, etc.
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(24),
@@ -128,6 +131,7 @@ class TaskDetailSection extends StatelessWidget {
     );
   }
 
+  // Builds a chip for assignee avatar
   Widget _buildAvatarChip(String name) {
     return Chip(
       avatar: const CircleAvatar(child: Text("S")),

@@ -1,5 +1,7 @@
+// Notes section widgets
 import 'package:flutter/material.dart';
 
+// Widget for displaying a note card
 class NoteCard extends StatelessWidget {
   final String label, date, title;
   final Color color;
@@ -63,10 +65,12 @@ class NoteCard extends StatelessWidget {
   }
 }
 
+// Widget for the notes section with search and list
 class NotesSection extends StatelessWidget {
   const NotesSection({super.key});
 
   @override
+  // Builds search field, add button, and list of notes
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),

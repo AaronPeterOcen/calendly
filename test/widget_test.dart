@@ -1,4 +1,4 @@
-// This is a basic Flutter widget test.
+// Basic widget test for the app
 //
 // To perform an interaction with a widget in your test, use the WidgetTester
 // utility in the flutter_test package. For example, you can send tap and scroll
@@ -10,7 +10,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:calendly/main.dart';
 
+// Main test function
 void main() {
+  // Smoke test to verify counter increments
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
