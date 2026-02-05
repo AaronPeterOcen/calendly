@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Reusable card widget with elevation and rounded corners for section containers
 class SectionCard extends StatelessWidget {
   final Widget child;
   final EdgeInsets padding;
@@ -30,6 +31,7 @@ class SectionCard extends StatelessWidget {
   }
 }
 
+/// Custom icon box with gray background used in section headers
 class CustomIconBox extends StatelessWidget {
   final IconData icon;
   const CustomIconBox({super.key, required this.icon});

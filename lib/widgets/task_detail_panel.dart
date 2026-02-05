@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'shared_components.dart';
 
+/// Panel for editing and managing task details
 class TaskDetailPanel extends StatelessWidget {
   const TaskDetailPanel({super.key});
 
@@ -114,9 +115,10 @@ class TaskDetailPanel extends StatelessWidget {
   }
 }
 
+/// Custom input field widget with label and static value display
 class _CustomInput extends StatelessWidget {
   final String label;
-  final String value;
+  final String value; // Static displayed value
   const _CustomInput({required this.label, required this.value});
 
   @override
@@ -150,6 +152,7 @@ class _CustomInput extends StatelessWidget {
   }
 }
 
+/// Priority level selector dropdown widget
 class _PriorityDropdown extends StatelessWidget {
   const _PriorityDropdown();
 
@@ -195,6 +198,7 @@ class _PriorityDropdown extends StatelessWidget {
   }
 }
 
+/// Tag widget displaying assigned person with remove option
 class _AssigneeTag extends StatelessWidget {
   final String name;
   const _AssigneeTag({required this.name});
@@ -225,6 +229,7 @@ class _AssigneeTag extends StatelessWidget {
   }
 }
 
+/// Description editor widget with formatting toolbar
 class _DescriptionBox extends StatelessWidget {
   const _DescriptionBox();
 

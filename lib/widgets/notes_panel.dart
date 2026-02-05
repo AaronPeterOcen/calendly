@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'shared_components.dart';
 
+/// Panel displaying a timeline of notes and tasks
 class NotesPanel extends StatelessWidget {
   const NotesPanel({super.key});
 
@@ -108,6 +109,7 @@ class NotesPanel extends StatelessWidget {
   }
 }
 
+/// Small action button with icon and label
 class _SmallBlackBtn extends StatelessWidget {
   final IconData icon;
   final String label;
@@ -139,13 +141,14 @@ class _SmallBlackBtn extends StatelessWidget {
   }
 }
 
+/// Single note item displayed in the timeline
 class _TimelineNoteItem extends StatelessWidget {
-  final String tag;
+  final String tag; // Timeline tag (e.g., 'Today', 'Tomorrow')
   final String date;
   final String title;
-  final String desc;
+  final String desc; // Description preview
   final String buttonLabel;
-  final Color tagColor;
+  final Color tagColor; // Color for the tag badge
 
   const _TimelineNoteItem({
     required this.tag,

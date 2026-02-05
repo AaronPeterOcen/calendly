@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'shared_components.dart';
 
+/// Panel widget for managing calendar reminders and events
 class ReminderPanel extends StatefulWidget {
   const ReminderPanel({super.key});
 
@@ -8,9 +9,10 @@ class ReminderPanel extends StatefulWidget {
   State<ReminderPanel> createState() => _ReminderPanelState();
 }
 
+/// State for ReminderPanel managing date selection and scroll navigation
 class _ReminderPanelState extends State<ReminderPanel> {
-  late ScrollController _scrollController;
-  int _activeIndex = 2;
+  late ScrollController _scrollController; // Controls horizontal date scroll
+  int _activeIndex = 2; // Currently selected date index
 
   @override
   void initState() {
@@ -24,6 +26,7 @@ class _ReminderPanelState extends State<ReminderPanel> {
     super.dispose();
   }
 
+  /// Updates the active date selection
   void _updateActiveDate(int index) {
     setState(() {
       _activeIndex = index;
@@ -226,10 +229,11 @@ class _ReminderPanelState extends State<ReminderPanel> {
   }
 }
 
+/// Single date item widget for the horizontal calendar scrollview
 class _DateItem extends StatelessWidget {
   final String day;
   final String date;
-  final bool active;
+  final bool active; // Whether this date is currently selected
   const _DateItem({required this.day, required this.date, this.active = false});
 
   @override
@@ -264,9 +268,10 @@ class _DateItem extends StatelessWidget {
   }
 }
 
+/// Tab item widget for switching between different reminder views
 class _TabItem extends StatelessWidget {
   final String title;
-  final bool active;
+  final bool active; // Whether this tab is currently selected
   const _TabItem({required this.title, this.active = false});
 
   @override
@@ -302,12 +307,13 @@ class _TabItem extends StatelessWidget {
   }
 }
 
+/// Displays event details in the reminder panel
 class EventItem extends StatelessWidget {
   final String title;
   final String time;
   final String location;
   final String host;
-  final String attendees;
+  final String attendees; // Format: "current/total"
   const EventItem({
     super.key,
     required this.title,
@@ -420,6 +426,7 @@ class EventItem extends StatelessWidget {
   }
 }
 
+/// Small icon button used in event items
 class _SmallIconBtn extends StatelessWidget {
   final IconData icon;
   const _SmallIconBtn({required this.icon});

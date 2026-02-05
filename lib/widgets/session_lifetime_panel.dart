@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'shared_components.dart';
 
+/// Panel for configuring session timeout and app usage limits
 class SessionLifetimePanel extends StatelessWidget {
   const SessionLifetimePanel({super.key});
 
@@ -124,8 +125,9 @@ class SessionLifetimePanel extends StatelessWidget {
   }
 }
 
+/// Input field for displaying time values
 class _TimeInput extends StatelessWidget {
-  final String value;
+  final String value; // Time value to display
   const _TimeInput({required this.value});
 
   @override
@@ -145,6 +147,7 @@ class _TimeInput extends StatelessWidget {
   }
 }
 
+/// Dropdown selector for time unit (Hour, Day, etc.)
 class _UnitDropdown extends StatelessWidget {
   const _UnitDropdown();
 
@@ -171,6 +174,7 @@ class _UnitDropdown extends StatelessWidget {
   }
 }
 
+/// Custom input field with optional label
 class _CustomInput extends StatelessWidget {
   final String label;
   final String value;
@@ -208,8 +212,9 @@ class _CustomInput extends StatelessWidget {
   }
 }
 
+/// Custom toggle switch widget
 class _CustomSwitch extends StatelessWidget {
-  final bool active;
+  final bool active; // Current toggle state
   const _CustomSwitch({required this.active});
 
   @override
