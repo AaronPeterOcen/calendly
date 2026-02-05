@@ -14,19 +14,21 @@ class SessionLifetimePanel extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'Session Lifetime',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 4),
-                  Text(
-                    'Configure session timeout by setting the idle session\nexcediy or maximum session lifetime.',
-                    style: TextStyle(color: Colors.black38, fontSize: 12),
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'Session Lifetime',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'Configure session timeout by setting the idle session\ntimeout or maximum session lifetime.',
+                      style: TextStyle(color: Colors.black38, fontSize: 12),
+                    ),
+                  ],
+                ),
               ),
               const Icon(Icons.close, size: 20, color: Colors.black26),
             ],
