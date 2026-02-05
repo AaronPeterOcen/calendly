@@ -1,99 +1,62 @@
-// Entry point of the Flutter application
-// main.dart
-import 'package:calendly/modals/task_detail_sheet.dart';
-import 'package:calendly/screens/notes_section.dart';
-import 'package:calendly/screens/remainder_calender_section.dart';
 import 'package:flutter/material.dart';
+// import 'widgets/shared_components.dart';
 
-// Runs the Flutter app
+import 'widgets/reminder_panel.dart';
+import 'widgets/task_detail_panel.dart';
+import 'widgets/session_lifetime_panel.dart';
+import 'widgets/notes_panel.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const ZenTaskApp());
 }
 
-// Main application widget configuring MaterialApp
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ZenTaskApp extends StatelessWidget {
+  const ZenTaskApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'ZenTask Manager',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
-        cardTheme: CardThemeData(
-          elevation: 2,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
+        scaffoldBackgroundColor: const Color(0xFFF9FAFB), // bg-gray-50
+        fontFamily: 'Inter',
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.black,
+          primary: Colors.black,
         ),
       ),
-      home: const RootWithBottomNav(),
+      home: const HomeScreen(),
     );
   }
 }
 
-// Root widget managing the main screen with calendar, tasks, and notes
-class RootWithBottomNav extends StatefulWidget {
-  const RootWithBottomNav({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<RootWithBottomNav> createState() => _RootWithBottomNavState();
-}
-
-class _RootWithBottomNavState extends State<RootWithBottomNav> {
-  // Focused date for the calendar
-  DateTime _focusedDate = DateTime(2025, 10);
-
-  // Shows the task detail modal bottom sheet
-  void _showTaskDetail(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      builder: (context) => DraggableScrollableSheet(
-        initialChildSize: 0.9,
-        minChildSize: 0.5,
-        maxChildSize: 0.95,
-        expand: false,
-        builder: (context, scrollController) => TaskDetailSection(
-          scrollController: scrollController,
-          onSave: () {},
-        ),
-      ),
-    );
-  }
-
-  @override
-  // Builds the main UI with app bar, calendar section, and notes section
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Productivity Dashboard")),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // 1. Calendar / Reminder at the top
-            ReminderCalendarSection(
-              focusedDate: _focusedDate,
-              onDateChanged: (d) => setState(() => _focusedDate = d),
-              onEventTap: () => _showTaskDetail(context),
-              onEditTap: () => _showTaskDetail(context),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 32),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 600),
+              child: Column(
+                children: const [
+                  ReminderPanel(),
+                  SizedBox(height: 24),
+                  TaskDetailPanel(),
+                  SizedBox(height: 24),
+                  SessionLifetimePanel(),
+                  SizedBox(height: 24),
+                  NotesPanel(),
+                ],
+              ),
             ),
-
-            // Divider
-            const Divider(),
-
-            // 2. Task Detail below
-            // TaskDetailSection(
-            //   onSave: () {},
-            //   scrollController: ScrollController(),
-            // ),
-
-            // 3. Notes at the bottom
-            NotesSection(),
-          ],
+          ),
         ),
       ),
     );
