@@ -6,14 +6,43 @@ import 'widgets/task_detail_panel.dart';
 import 'widgets/session_lifetime_panel.dart';
 import 'widgets/notes_panel.dart';
 
+// Import screens and services
+import 'screens/login_screen.dart';
+import 'services/auth_service.dart';
+
 /// Main entry point of the ZenTask Manager application
 void main() {
   runApp(const ZenTaskApp());
 }
 
 /// Root app widget that sets up the Material theme and navigation
-class ZenTaskApp extends StatelessWidget {
+class ZenTaskApp extends StatefulWidget {
   const ZenTaskApp({super.key});
+
+  @override
+  State<ZenTaskApp> createState() => _ZenTaskAppState();
+}
+
+class _ZenTaskAppState extends State<ZenTaskApp> {
+  late Future<bool> _loginStatusFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _loginStatusFuture = AuthService.isLoggedIn();
+  }
+
+  void _handleLoginSuccess() {
+    setState(() {
+      _loginStatusFuture = AuthService.isLoggedIn();
+    });
+  }
+
+  void _handleLogout() {
+    setState(() {
+      _loginStatusFuture = AuthService.logout().then((_) => false);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +60,31 @@ class ZenTaskApp extends StatelessWidget {
           primary: Colors.black,
         ),
       ),
-      home: const HomeScreen(),
+      home: FutureBuilder<bool>(
+        future: _loginStatusFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+
+          if (snapshot.data == true) {
+            return HomeScreen(onLogout: _handleLogout);
+          } else {
+            return LoginScreen(onLoginSuccess: _handleLoginSuccess);
+          }
+        },
+      ),
     );
   }
 }
 
 /// Main home screen with drawer navigation
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final VoidCallback onLogout;
+
+  const HomeScreen({super.key, required this.onLogout});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -47,12 +93,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  final List<String> _titles = [
-    'Reminder',
-    'Task Detail',
-    'Session Lifetime',
-    'Notes',
-  ];
+  final List<String> _titles = ['', '', '', ''];
 
   final List<Widget> _pages = const [
     ReminderPage(),
@@ -107,6 +148,31 @@ class _HomeScreenState extends State<HomeScreen> {
             label: const Text('Notes'),
             icon: const Icon(Icons.note),
             selectedIcon: const Icon(Icons.note_outlined),
+          ),
+          const Divider(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  widget.onLogout();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey[200],
+                  foregroundColor: Colors.black,
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.logout, size: 20),
+                    SizedBox(width: 8),
+                    Text('Logout'),
+                  ],
+                ),
+              ),
+            ),
           ),
         ],
       ),
