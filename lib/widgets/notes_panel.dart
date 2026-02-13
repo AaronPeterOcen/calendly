@@ -7,104 +7,102 @@ class NotesPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SectionCard(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: const [
-                  CustomIconBox(icon: Icons.sticky_note_2_outlined),
-                  SizedBox(width: 12),
-                  Text(
-                    'Notes',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-              _SmallBlackBtn(icon: Icons.add, label: 'Add Note'),
-            ],
-          ),
-          const SizedBox(height: 24),
-          // Search Bar
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: const Color(0xFFF3F4F6)),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      icon: const Icon(
-                        Icons.search,
-                        size: 20,
-                        color: Colors.black38,
-                      ),
-                      hintText: 'Search Notes...',
-                      hintStyle: const TextStyle(
-                        color: Colors.black26,
-                        fontSize: 14,
-                      ),
-                      border: InputBorder.none,
-                      contentPadding: const EdgeInsets.symmetric(vertical: 12),
-                    ),
-                  ),
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: const [
+                CustomIconBox(icon: Icons.sticky_note_2_outlined),
+                SizedBox(width: 12),
+                Text(
+                  'Notes',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-              ),
-              const SizedBox(width: 12),
-              Container(
-                padding: const EdgeInsets.all(12),
+              ],
+            ),
+            _SmallBlackBtn(icon: Icons.add, label: 'Add Note'),
+          ],
+        ),
+        const SizedBox(height: 24),
+        // Search Bar
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(color: const Color(0xFFF3F4F6)),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Icon(Icons.tune, size: 20, color: Colors.black54),
+                child: TextField(
+                  decoration: InputDecoration(
+                    icon: const Icon(
+                      Icons.search,
+                      size: 20,
+                      color: Colors.black38,
+                    ),
+                    hintText: 'Search Notes...',
+                    hintStyle: const TextStyle(
+                      color: Colors.black26,
+                      fontSize: 14,
+                    ),
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(vertical: 12),
+                  ),
+                ),
               ),
-            ],
-          ),
-          const SizedBox(height: 32),
-          const _TimelineNoteItem(
-            tag: 'Today',
-            date: '2025 - Aug 03',
-            title: 'Text Inputs for Design System',
-            desc:
-                'Search for inspiration to provide a rich content experience...',
-            buttonLabel: 'View Details',
-            tagColor: Colors.blue,
-          ),
-          const _TimelineNoteItem(
-            tag: 'Tomorrow',
-            date: '2025 - Aug 04',
-            title: 'User Interface Components',
-            desc:
-                'Gather examples of UI components that enhance interactivity...',
-            buttonLabel: 'Explore Components',
-            tagColor: Colors.orange,
-          ),
-          const _TimelineNoteItem(
-            tag: 'Next Week',
-            date: '2025 - Aug 10',
-            title: 'Color Palettes for Branding',
-            desc: 'Curate a collection of color palettes that align...',
-            buttonLabel: 'See Color Palettes',
-            tagColor: Colors.green,
-          ),
-          const _TimelineNoteItem(
-            tag: 'This Month',
-            date: '2025 - Jul 15',
-            title: 'Responsive Web Design',
-            desc: 'Develop layouts that adapt seamlessly to diff...',
-            buttonLabel: 'View Designs',
-            tagColor: Colors.green,
-          ),
-        ],
-      ),
+            ),
+            const SizedBox(width: 12),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: const Color(0xFFF3F4F6)),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Icon(Icons.tune, size: 20, color: Colors.black54),
+            ),
+          ],
+        ),
+        const SizedBox(height: 32),
+        const _TimelineNoteItem(
+          tag: 'Today',
+          date: '2025 - Aug 03',
+          title: 'Text Inputs for Design System',
+          desc:
+              'Search for inspiration to provide a rich content experience...',
+          buttonLabel: 'View Details',
+          tagColor: Colors.blue,
+        ),
+        const _TimelineNoteItem(
+          tag: 'Tomorrow',
+          date: '2025 - Aug 04',
+          title: 'User Interface Components',
+          desc:
+              'Gather examples of UI components that enhance interactivity...',
+          buttonLabel: 'Explore Components',
+          tagColor: Colors.orange,
+        ),
+        const _TimelineNoteItem(
+          tag: 'Next Week',
+          date: '2025 - Aug 10',
+          title: 'Color Palettes for Branding',
+          desc: 'Curate a collection of color palettes that align...',
+          buttonLabel: 'See Color Palettes',
+          tagColor: Colors.green,
+        ),
+        const _TimelineNoteItem(
+          tag: 'This Month',
+          date: '2025 - Jul 15',
+          title: 'Responsive Web Design',
+          desc: 'Develop layouts that adapt seamlessly to diff...',
+          buttonLabel: 'View Designs',
+          tagColor: Colors.green,
+        ),
+      ],
     );
   }
 }

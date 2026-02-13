@@ -49,182 +49,180 @@ class _ReminderPanelState extends State<ReminderPanel> {
       {'day': 'Sun', 'date': '09'},
     ];
 
-    return SectionCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: const [
-              CustomIconBox(icon: Icons.calendar_month_outlined),
-              SizedBox(width: 12),
-              Text(
-                'Reminder',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: const [
+            CustomIconBox(icon: Icons.calendar_month_outlined),
+            SizedBox(width: 12),
+            Text(
+              'Reminder',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        const SizedBox(height: 24),
+        // Month Selector
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            color: const Color(0xFFF9FAFB),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.chevron_left, size: 20),
+              ),
+              const Text(
+                'October 2025',
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.chevron_right, size: 20),
               ),
             ],
           ),
-          const SizedBox(height: 24),
-          // Month Selector
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF9FAFB),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.chevron_left, size: 20),
-                ),
-                const Text(
-                  'October 2025',
-                  style: TextStyle(fontWeight: FontWeight.w600),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.chevron_right, size: 20),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 24),
-          // Date List - Scrollable with arrows
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  _scrollController.animateTo(
-                    _scrollController.offset - 100,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                },
-                child: const Icon(
-                  Icons.chevron_left,
-                  size: 24,
-                  color: Colors.black38,
-                ),
+        ),
+        const SizedBox(height: 24),
+        // Date List - Scrollable with arrows
+        Row(
+          children: [
+            GestureDetector(
+              onTap: () {
+                _scrollController.animateTo(
+                  _scrollController.offset - 100,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              },
+              child: const Icon(
+                Icons.chevron_left,
+                size: 24,
+                color: Colors.black38,
               ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: SingleChildScrollView(
-                  controller: _scrollController,
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: List.generate(
-                      dates.length,
-                      (index) => Padding(
-                        padding: EdgeInsets.only(
-                          right: index < dates.length - 1 ? 12 : 0,
-                        ),
-                        child: GestureDetector(
-                          onTap: () => _updateActiveDate(index),
-                          child: _DateItem(
-                            day: dates[index]['day']!,
-                            date: dates[index]['date']!,
-                            active: _activeIndex == index,
-                          ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(
+                    dates.length,
+                    (index) => Padding(
+                      padding: EdgeInsets.only(
+                        right: index < dates.length - 1 ? 12 : 0,
+                      ),
+                      child: GestureDetector(
+                        onTap: () => _updateActiveDate(index),
+                        child: _DateItem(
+                          day: dates[index]['day']!,
+                          date: dates[index]['date']!,
+                          active: _activeIndex == index,
                         ),
                       ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(width: 12),
-              GestureDetector(
-                onTap: () {
-                  _scrollController.animateTo(
-                    _scrollController.offset + 100,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                },
-                child: const Icon(
-                  Icons.chevron_right,
-                  size: 24,
-                  color: Colors.black38,
-                ),
+            ),
+            const SizedBox(width: 12),
+            GestureDetector(
+              onTap: () {
+                _scrollController.animateTo(
+                  _scrollController.offset + 100,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              },
+              child: const Icon(
+                Icons.chevron_right,
+                size: 24,
+                color: Colors.black38,
               ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 24),
+        // Tabs
+        Container(
+          padding: const EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            color: const Color(0xFFF9FAFB),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            children: [
+              _TabItem(title: 'Discussion'),
+              _TabItem(title: 'Events', active: true),
+              _TabItem(title: 'Vacations'),
             ],
           ),
-          const SizedBox(height: 24),
-          // Tabs
-          Container(
-            padding: const EdgeInsets.all(4),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF9FAFB),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Row(
-              children: [
-                _TabItem(title: 'Discussion'),
-                _TabItem(title: 'Events', active: true),
-                _TabItem(title: 'Vacations'),
-              ],
-            ),
-          ),
-          const SizedBox(height: 24),
-          // Search Bar
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: const Color(0xFFF3F4F6)),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      icon: const Icon(
-                        Icons.search,
-                        size: 20,
-                        color: Colors.black38,
-                      ),
-                      hintText: 'Search Events...',
-                      hintStyle: const TextStyle(
-                        color: Colors.black26,
-                        fontSize: 14,
-                      ),
-                      border: InputBorder.none,
-                      contentPadding: const EdgeInsets.symmetric(vertical: 12),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Container(
-                padding: const EdgeInsets.all(12),
+        ),
+        const SizedBox(height: 24),
+        // Search Bar
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(color: const Color(0xFFF3F4F6)),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Icon(Icons.tune, size: 20, color: Colors.black54),
+                child: TextField(
+                  decoration: InputDecoration(
+                    icon: const Icon(
+                      Icons.search,
+                      size: 20,
+                      color: Colors.black38,
+                    ),
+                    hintText: 'Search Events...',
+                    hintStyle: const TextStyle(
+                      color: Colors.black26,
+                      fontSize: 14,
+                    ),
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(vertical: 12),
+                  ),
+                ),
               ),
-            ],
-          ),
-          const SizedBox(height: 24),
-          const EventItem(
-            title: 'Workshop on Prototyping Techniques',
-            time: '10:30 AM - 12:00 PM (UTC)',
-            location: '45 Greenfield Road, CA',
-            host: 'Sarah Lee',
-            attendees: '12/16',
-          ),
-          const SizedBox(height: 16),
-          const EventItem(
-            title: 'Interactive Session: UX Best Practices',
-            time: '1:00 PM - 3:00 PM (UTC)',
-            location: '78 Elm Street, NY',
-            host: 'Daniel Kim',
-            attendees: '12/17',
-          ),
-        ],
-      ),
+            ),
+            const SizedBox(width: 12),
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: const Color(0xFFF3F4F6)),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Icon(Icons.tune, size: 20, color: Colors.black54),
+            ),
+          ],
+        ),
+        const SizedBox(height: 24),
+        const EventItem(
+          title: 'Workshop on Prototyping Techniques',
+          time: '10:30 AM - 12:00 PM (UTC)',
+          location: '45 Greenfield Road, CA',
+          host: 'Sarah Lee',
+          attendees: '12/16',
+        ),
+        const SizedBox(height: 16),
+        const EventItem(
+          title: 'Interactive Session: UX Best Practices',
+          time: '1:00 PM - 3:00 PM (UTC)',
+          location: '78 Elm Street, NY',
+          host: 'Daniel Kim',
+          attendees: '12/17',
+        ),
+      ],
     );
   }
 }

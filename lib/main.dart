@@ -36,34 +36,131 @@ class ZenTaskApp extends StatelessWidget {
   }
 }
 
-/// Main home screen displaying all task management panels
-class HomeScreen extends StatelessWidget {
+/// Main home screen with drawer navigation
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
+  final List<String> _titles = [
+    'Reminder',
+    'Task Detail',
+    'Session Lifetime',
+    'Notes',
+  ];
+
+  final List<Widget> _pages = const [
+    ReminderPage(),
+    TaskDetailPage(),
+    SessionLifetimePage(),
+    NotesPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(_titles[_selectedIndex]),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        foregroundColor: Colors.black,
+      ),
+      drawer: NavigationDrawer(
+        selectedIndex: _selectedIndex,
+        onDestinationSelected: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+          Navigator.pop(context);
+        },
+        children: [
+          DrawerHeader(
+            child: Container(
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                'ZenTask Manager',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          NavigationDrawerDestination(
+            label: const Text('Reminder'),
+            icon: const Icon(Icons.notifications),
+            selectedIcon: const Icon(Icons.notifications_active),
+          ),
+          NavigationDrawerDestination(
+            label: const Text('Task Detail'),
+            icon: const Icon(Icons.task),
+            selectedIcon: const Icon(Icons.task_alt),
+          ),
+          NavigationDrawerDestination(
+            label: const Text('Session Lifetime'),
+            icon: const Icon(Icons.schedule),
+            selectedIcon: const Icon(Icons.schedule_outlined),
+          ),
+          NavigationDrawerDestination(
+            label: const Text('Notes'),
+            icon: const Icon(Icons.note),
+            selectedIcon: const Icon(Icons.note_outlined),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 32),
           child: Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 600),
-              child: Column(
-                children: const [
-                  ReminderPanel(),
-                  SizedBox(height: 24),
-                  TaskDetailPanel(),
-                  SizedBox(height: 24),
-                  SessionLifetimePanel(),
-                  SizedBox(height: 24),
-                  NotesPanel(),
-                ],
-              ),
+              child: _pages[_selectedIndex],
             ),
           ),
         ),
       ),
     );
+  }
+}
+
+/// Reminder panel page
+class ReminderPage extends StatelessWidget {
+  const ReminderPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const ReminderPanel();
+  }
+}
+
+/// Task detail panel page
+class TaskDetailPage extends StatelessWidget {
+  const TaskDetailPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const TaskDetailPanel();
+  }
+}
+
+/// Session lifetime panel page
+class SessionLifetimePage extends StatelessWidget {
+  const SessionLifetimePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SessionLifetimePanel();
+  }
+}
+
+/// Notes panel page
+class NotesPage extends StatelessWidget {
+  const NotesPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const NotesPanel();
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'shared_components.dart';
 
 /// Panel for editing and managing task details
 class TaskDetailPanel extends StatelessWidget {
@@ -7,110 +6,108 @@ class TaskDetailPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SectionCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                'Detail Task',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              Icon(Icons.close, size: 20, color: Colors.black26),
-            ],
-          ),
-          const Text(
-            'Manage your task detail here.',
-            style: TextStyle(color: Colors.black38, fontSize: 12),
-          ),
-          const SizedBox(height: 24),
-          Row(
-            children: [
-              Expanded(
-                child: _CustomInput(
-                  label: 'TITLE TASK',
-                  value: 'Edit Design System',
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(child: _PriorityDropdown()),
-            ],
-          ),
-          const SizedBox(height: 24),
-          const Text(
-            'ASSIGN TASK TO',
-            style: TextStyle(
-              fontSize: 10,
-              fontWeight: FontWeight.bold,
-              color: Colors.black38,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            Text(
+              'Detail Task',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-          ),
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 8,
-            children: const [
-              _AssigneeTag(name: 'Sophia Williams'),
-              _AssigneeTag(name: 'Liam Johnson'),
-              _AssigneeTag(name: 'Olivia Smith'),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xFFF3F4F6)),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: const Center(
-              child: Text(
-                '+ Add other person',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black54,
-                ),
+            Icon(Icons.close, size: 20, color: Colors.black26),
+          ],
+        ),
+        const Text(
+          'Manage your task detail here.',
+          style: TextStyle(color: Colors.black38, fontSize: 12),
+        ),
+        const SizedBox(height: 24),
+        Row(
+          children: [
+            Expanded(
+              child: _CustomInput(
+                label: 'TITLE TASK',
+                value: 'Edit Design System',
               ),
             ),
+            const SizedBox(width: 12),
+            Expanded(child: _PriorityDropdown()),
+          ],
+        ),
+        const SizedBox(height: 24),
+        const Text(
+          'ASSIGN TASK TO',
+          style: TextStyle(
+            fontSize: 10,
+            fontWeight: FontWeight.bold,
+            color: Colors.black38,
           ),
-          const SizedBox(height: 24),
-          const Text(
-            'DESCRIPTION',
-            style: TextStyle(
-              fontSize: 10,
-              fontWeight: FontWeight.bold,
-              color: Colors.black38,
+        ),
+        const SizedBox(height: 12),
+        Wrap(
+          spacing: 8,
+          children: const [
+            _AssigneeTag(name: 'Sophia Williams'),
+            _AssigneeTag(name: 'Liam Johnson'),
+            _AssigneeTag(name: 'Olivia Smith'),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+            border: Border.all(color: const Color(0xFFF3F4F6)),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Center(
+            child: Text(
+              '+ Add other person',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
+              ),
             ),
           ),
-          const SizedBox(height: 12),
-          const _DescriptionBox(),
-          const SizedBox(height: 24),
-          Row(
-            children: [
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () {},
-                  child: const Text('Reset'),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                flex: 2,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                  ),
-                  onPressed: () {},
-                  child: const Text('Save Changes'),
-                ),
-              ),
-            ],
+        ),
+        const SizedBox(height: 24),
+        const Text(
+          'DESCRIPTION',
+          style: TextStyle(
+            fontSize: 10,
+            fontWeight: FontWeight.bold,
+            color: Colors.black38,
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 12),
+        const _DescriptionBox(),
+        const SizedBox(height: 24),
+        Row(
+          children: [
+            Expanded(
+              child: OutlinedButton(
+                onPressed: () {},
+                child: const Text('Reset'),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              flex: 2,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: () {},
+                child: const Text('Save Changes'),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

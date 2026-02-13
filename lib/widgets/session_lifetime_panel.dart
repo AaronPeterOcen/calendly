@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'shared_components.dart';
 
 /// Panel for configuring session timeout and app usage limits
 class SessionLifetimePanel extends StatelessWidget {
@@ -7,122 +6,120 @@ class SessionLifetimePanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SectionCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Session Lifetime',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 4),
-                    Text(
-                      'Configure session timeout by setting the idle session\ntimeout or maximum session lifetime.',
-                      style: TextStyle(color: Colors.black38, fontSize: 12),
-                    ),
-                  ],
-                ),
-              ),
-              const Icon(Icons.close, size: 20, color: Colors.black26),
-            ],
-          ),
-          const SizedBox(height: 32),
-          Row(
-            children: [
-              const Icon(Icons.info_outline, size: 16, color: Colors.black26),
-              const SizedBox(width: 8),
-              const Text(
-                'Reminder Using App',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              Expanded(flex: 2, child: _TimeInput(value: '4')),
-              const SizedBox(width: 12),
-              Expanded(child: _UnitDropdown()),
-            ],
-          ),
-          const SizedBox(height: 8),
-          const Text(
-            'Set maximum time using each apps for a day',
-            style: TextStyle(fontSize: 12, color: Colors.black54),
-          ),
-          const SizedBox(height: 24),
-          Row(
-            children: [
-              _CustomSwitch(active: true),
-              const SizedBox(width: 12),
-              const Text(
-                'Set also for reminder specific app',
-                style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          const SizedBox(height: 24),
-          const Text(
-            'APP',
-            style: TextStyle(
-              fontSize: 10,
-              fontWeight: FontWeight.bold,
-              color: Colors.black38,
-            ),
-          ),
-          const SizedBox(height: 12),
-          _CustomInput(label: '', value: 'Instagram'),
-          const SizedBox(height: 12),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            decoration: BoxDecoration(
-              border: Border.all(color: const Color(0xFFF3F4F6)),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: const Center(
-              child: Text(
-                '+ Add other apps',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black54,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 32),
-          Row(
-            children: [
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: () {},
-                  child: const Text('Reset'),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                    // borderRadius: BorderRadius.circular(8),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    'Session Lifetime',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {},
-                  child: const Text('Save Changes'),
-                ),
+                  SizedBox(height: 4),
+                  Text(
+                    'Configure session timeout by setting the idle session\ntimeout or maximum session lifetime.',
+                    style: TextStyle(color: Colors.black38, fontSize: 12),
+                  ),
+                ],
               ),
-            ],
+            ),
+            const Icon(Icons.close, size: 20, color: Colors.black26),
+          ],
+        ),
+        const SizedBox(height: 32),
+        Row(
+          children: [
+            const Icon(Icons.info_outline, size: 16, color: Colors.black26),
+            const SizedBox(width: 8),
+            const Text(
+              'Reminder Using App',
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          children: [
+            Expanded(flex: 2, child: _TimeInput(value: '4')),
+            const SizedBox(width: 12),
+            Expanded(child: _UnitDropdown()),
+          ],
+        ),
+        const SizedBox(height: 8),
+        const Text(
+          'Set maximum time using each apps for a day',
+          style: TextStyle(fontSize: 12, color: Colors.black54),
+        ),
+        const SizedBox(height: 24),
+        Row(
+          children: [
+            _CustomSwitch(active: true),
+            const SizedBox(width: 12),
+            const Text(
+              'Set also for reminder specific app',
+              style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        const SizedBox(height: 24),
+        const Text(
+          'APP',
+          style: TextStyle(
+            fontSize: 10,
+            fontWeight: FontWeight.bold,
+            color: Colors.black38,
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 12),
+        _CustomInput(label: '', value: 'Instagram'),
+        const SizedBox(height: 12),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          decoration: BoxDecoration(
+            border: Border.all(color: const Color(0xFFF3F4F6)),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Center(
+            child: Text(
+              '+ Add other apps',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 32),
+        Row(
+          children: [
+            Expanded(
+              child: OutlinedButton(
+                onPressed: () {},
+                child: const Text('Reset'),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  foregroundColor: Colors.white,
+                  // borderRadius: BorderRadius.circular(8),
+                ),
+                onPressed: () {},
+                child: const Text('Save Changes'),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
