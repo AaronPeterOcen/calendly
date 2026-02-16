@@ -9,9 +9,12 @@ import 'widgets/notes_panel.dart';
 // Import screens and services
 import 'screens/login_screen.dart';
 import 'services/auth_service.dart';
+import 'services/item_service.dart';
 
 /// Main entry point of the ZenTask Manager application
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await ItemService.initializeItems();
   runApp(const ZenTaskApp());
 }
 
